@@ -1,0 +1,92 @@
+[gd_scene load_steps=13 format=3 uid="uid://b2016kvg0xerf"]
+
+[ext_resource type="Script" path="res://Scenes/tnt_goblin.gd" id="1_xedem"]
+[ext_resource type="Texture2D" uid="uid://bqw22ivdnpjg2" path="res://Assets/Tiny Swords/Tiny Swords (Update 010)/Factions/Goblins/Troops/Barrel/Red/Barrel_Red.png" id="3_o3eqi"]
+[ext_resource type="Script" path="res://Scripts/behaviors/follow_player.gd" id="4_6wle3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xoci"]
+atlas = ExtResource("3_o3eqi")
+region = Rect2(0, 512, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apgan"]
+atlas = ExtResource("3_o3eqi")
+region = Rect2(128, 512, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8rr5"]
+atlas = ExtResource("3_o3eqi")
+region = Rect2(256, 512, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_305vn"]
+atlas = ExtResource("3_o3eqi")
+region = Rect2(0, 640, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3eg00"]
+atlas = ExtResource("3_o3eqi")
+region = Rect2(128, 640, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkb4o"]
+atlas = ExtResource("3_o3eqi")
+region = Rect2(256, 640, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7lm42"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xoci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apgan")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8rr5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_305vn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3eg00")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkb4o")
+}],
+"loop": true,
+"name": &"explosion",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pau2y"]
+radius = 4.44258
+height = 10.1545
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mmlo1"]
+radius = 150.03
+
+[node name="TNT_Goblin" type="CharacterBody2D" groups=["enemies"]]
+script = ExtResource("1_xedem")
+health = null
+
+[node name="Animation_Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -32)
+sprite_frames = SubResource("SpriteFrames_7lm42")
+autoplay = "default"
+frame_progress = 0.228393
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -31)
+scale = Vector2(3.15132, 2.52607)
+shape = SubResource("CapsuleShape2D_pau2y")
+
+[node name="Follow_Player" type="Node" parent="."]
+script = ExtResource("4_6wle3")
+
+[node name="Bomb_detection" type="Area2D" parent="."]
+
+[node name="collision" type="CollisionShape2D" parent="Bomb_detection"]
+position = Vector2(0, -30)
+shape = SubResource("CircleShape2D_mmlo1")
+debug_color = Color(0.717647, 0.168627, 0.239216, 0.172549)

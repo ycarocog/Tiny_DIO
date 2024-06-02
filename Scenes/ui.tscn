@@ -1,0 +1,83 @@
+[gd_scene load_steps=10 format=3 uid="uid://p3f5xmhus8iv"]
+
+[ext_resource type="Script" path="res://Scripts/Interface.gd" id="1_0uykn"]
+[ext_resource type="Texture2D" uid="uid://d1sgqo1v3mptg" path="res://Assets/Tiny Swords/Tiny Swords (Update 010)/UI/Banners/Banner_Vertical.png" id="1_nuxu6"]
+[ext_resource type="Texture2D" uid="uid://cplfsq86hc6g0" path="res://Assets/Tiny Swords/Tiny Swords (Update 010)/Resources/Resources/M_Idle_(NoShadow).png" id="3_fjc71"]
+
+[sub_resource type="SystemFont" id="SystemFont_fmgcb"]
+font_names = PackedStringArray("Comic Sans MS")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_8vvqa"]
+font = SubResource("SystemFont_fmgcb")
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p1y1y"]
+texture = ExtResource("1_nuxu6")
+texture_margin_bottom = 1.02632
+region_rect = Rect2(35.9602, 32.368, 120.592, 128.803)
+
+[sub_resource type="SystemFont" id="SystemFont_qftx5"]
+font_names = PackedStringArray("Viner Hand ITC")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_2gvii"]
+font = SubResource("SystemFont_qftx5")
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5yt1"]
+atlas = ExtResource("3_fjc71")
+region = Rect2(41.3933, 57.0089, 51.7087, 40.9911)
+
+[node name="UI" type="Node2D"]
+
+[node name="Interface" type="CanvasLayer" parent="."]
+script = ExtResource("1_0uykn")
+
+[node name="Timer_Label" type="Label" parent="Interface"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -46.0
+offset_top = 40.0
+offset_right = 47.0
+offset_bottom = 67.0
+grow_horizontal = 2
+text = "00:00"
+label_settings = SubResource("LabelSettings_8vvqa")
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Interface"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -210.0
+offset_top = 19.0
+offset_right = -26.0
+offset_bottom = 157.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_p1y1y")
+
+[node name="Meat_Amout" type="Label" parent="Interface/Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -98.0
+offset_top = 22.0
+offset_right = -13.0
+offset_bottom = 74.0
+grow_horizontal = 0
+text = ": 30"
+label_settings = SubResource("LabelSettings_2gvii")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Interface/Panel"]
+layout_mode = 1
+offset_left = 29.0
+offset_top = 15.0
+offset_right = 90.0
+offset_bottom = 71.0
+texture = SubResource("AtlasTexture_r5yt1")
